@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Привітання для Дідуся</title>
+  <style>
+    :root {
+      --wood-dark: #1f120a;
+      --wood-mid: #4b2f1c;
+      --wood-warm: #7a4d2d;
+      --paper: #ead2a8;
+      --paper-light: #f7e8c9;
+      --paper-edge: #b98549;
+      --folder: #d5a368;
+      --folder-dark: #9b6738;
+      --ink: #382211;
+      --gold: #d9ad64;
+      --cream: #f7ead2;
+      --shadow-soft: rgba(0, 0, 0, .34);
+      --shadow-deep: rgba(0, 0, 0, .62);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 50% -12%, rgba(255, 210, 133, .18), transparent 28%),
+        linear-gradient(90deg, rgba(0,0,0,.2), transparent 18%, transparent 82%, rgba(0,0,0,.28)),
+        repeating-linear-gradient(90deg,
+          rgba(255,255,255,.035) 0 1px,
+          rgba(0,0,0,.025) 1px 2px,
+          transparent 2px 78px),
+        linear-gradient(104deg,
+          #26160c 0%, #402514 18%, #5a351d 38%, #351f12 57%, #684126 74%, #23140b 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 34%, rgba(255,255,255,.07) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 81% 22%, rgba(255,255,255,.055) 0 1px, transparent 1.4px),
+        radial-gradient(circle at 42% 78%, rgba(255,255,255,.045) 0 1px, transparent 1.4px),
+        linear-gradient(180deg, rgba(255,230,180,.05), rgba(0,0,0,.08));
+      background-size: 105px 105px, 155px 155px, 185px 185px, 100% 100%;
+      mix-blend-mode: screen;
+      opacity: .75;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at center, transparent 42%, rgba(0,0,0,.43) 100%);
+      z-index: 10;
+    }
+
+    .lights {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 108px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .lights::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      left: -7%;
+      width: 114%;
+      height: 64px;
+      border-top: 2px solid rgba(32, 20, 13, .9);
+      border-radius: 50%;
+      transform: rotate(-1.8deg);
+      filter: drop-shadow(0 2px 2px rgba(0,0,0,.55));
+    }
+
+    .bulb {
+      position: absolute;
+      top: 28px;
+      width: 13px;
+      height: 22px;
+      border-radius: 50% 50% 45% 45%;
+      background:
+        radial-gradient(circle at 36% 28%, #fff8c9 0 14%, #ffd989 33%, #a45d22 88%);
+      box-shadow:
+        0 0 10px 3px rgba(255, 207, 112, .55),
+        0 0 34px 14px rgba(255, 168, 61, .18),
+        inset 0 -4px 4px rgba(91, 42, 12, .35);
+      animation: glow 2.8s ease-in-out infinite alternate;
+    }
+
+    .bulb::before {
+      content: "";
+      position: absolute;
+      top: -7px;
+      left: 2px;
+      width: 9px;
+      height: 8px;
+      background: #21160f;
+      border-radius: 3px 3px 1px 1px;
+    }
+
+    .bulb:nth-child(1) { left: 8%; top: 38px; }
+    .bulb:nth-child(2) { left: 22%; top: 22px; animation-delay: .3s; }
+    .bulb:nth-child(3) { left: 38%; top: 36px; animation-delay: .8s; }
+    .bulb:nth-child(4) { left: 54%; top: 25px; animation-delay: .2s; }
+    .bulb:nth-child(5) { left: 70%; top: 39px; animation-delay: .6s; }
+    .bulb:nth-child(6) { left: 87%; top: 24px; animation-delay: 1s; }
+
+    @keyframes glow {
+      from { opacity: .72; transform: translateY(0) scale(.98); }
+      to { opacity: 1; transform: translateY(2px) scale(1.04); }
+    }
+
+    .page {
+      position: relative;
+      z-index: 3;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 82px 0 62px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 570px;
+      padding: 38px 26px 18px;
+    }
+
+    .title-card {
+      position: relative;
+      width: min(630px, 100%);
+      margin: 0 auto;
+      text-align: center;
+      padding: 42px 28px 30px;
+      border-radius: 30px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,0) 40%),
+        radial-gradient(circle at 50% 0, rgba(244,200,122,.16), transparent 48%),
+        rgba(30, 19, 11, .66);
+      box-shadow:
+        inset 0 0 85px rgba(0,0,0,.33),
+        inset 0 1px 0 rgba(255,241,210,.16),
+        0 28px 76px var(--shadow-deep);
+      border: 1px solid rgba(255, 228, 177, .18);
+      backdrop-filter: blur(4px);
+    }
+
+    .title-card::before,
+    .title-card::after {
+      content: "";
+      position: absolute;
+      width: 62px;
+      height: 62px;
+      border: 1px solid rgba(216,173,93,.24);
+      pointer-events: none;
+    }
+
+    .title-card::before { left: 18px; top: 18px; border-right: 0; border-bottom: 0; border-radius: 18px 0 0 0; }
+    .title-card::after { right: 18px; bottom: 18px; border-left: 0; border-top: 0; border-radius: 0 0 18px 0; }
+
+    .title-card h1 {
+      margin: 0;
+      font-size: clamp(3.35rem, 9vw, 7.35rem);
+      line-height: .95;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #ead8bb;
+      text-shadow: 0 6px 18px rgba(0,0,0,.58), 0 1px 0 rgba(255,255,255,.18);
+    }
+
+    .title-card h2 {
+      margin: 18px 0 0;
+      font-size: clamp(2rem, 5vw, 4.35rem);
+      color: var(--gold);
+      font-weight: 500;
+      text-shadow: 0 4px 16px rgba(0,0,0,.55);
+    }
+
+    .script {
+      margin-top: 23px;
+      font-family: "Brush Script MT", "Segoe Script", "Snell Roundhand", cursive;
+      font-size: clamp(2.1rem, 6vw, 5rem);
+      line-height: 1.07;
+      color: #efdfc2;
+      transform: rotate(-2deg);
+      text-shadow: 0 4px 16px rgba(0,0,0,.48);
+    }
+
+    .heart-line {
+      margin-top: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      color: var(--gold);
+      font-size: 2rem;
+    }
+
+    .heart-line::before,
+    .heart-line::after {
+      content: "";
+      width: min(150px, 22vw);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(217,173,100,.9), transparent);
+      box-shadow: 0 0 9px rgba(217,173,100,.35);
+    }
+
+    .photo {
+      position: absolute;
+      width: 250px;
+      padding: 13px 13px 48px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.55), transparent 25%),
+        linear-gradient(180deg, #f1dfbf, #d6b88b);
+      box-shadow:
+        0 21px 38px rgba(0,0,0,.55),
+        0 4px 10px rgba(0,0,0,.28),
+        inset 0 0 0 1px rgba(255,255,255,.32);
+      border-radius: 5px;
+      transform: rotate(var(--r));
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .photo::before {
+      content: "";
+      position: absolute;
+      top: -17px;
+      left: 50%;
+      width: 82px;
+      height: 30px;
+      transform: translateX(-50%) rotate(-4deg);
+      background:
+        linear-gradient(90deg, rgba(122,92,53,.12), transparent 22%, rgba(255,255,255,.2) 52%, transparent 78%, rgba(95,60,28,.13)),
+        rgba(218, 191, 150, .64);
+      box-shadow:
+        0 2px 5px rgba(0,0,0,.25),
+        inset 0 0 12px rgba(255,255,255,.25);
+      border-left: 1px dashed rgba(105,77,46,.25);
+      border-right: 1px dashed rgba(105,77,46,.25);
+    }
+
+    .photo::after {
+      content: "";
+      position: absolute;
+      inset: 13px 13px 48px;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.16), transparent 30%),
+        radial-gradient(circle at 20% 15%, rgba(255,255,255,.18), transparent 20%);
+      border-radius: 2px;
+      mix-blend-mode: screen;
+    }
+
+    .photo:hover {
+      transform: rotate(var(--r)) translateY(-8px) scale(1.025);
+      box-shadow: 0 31px 55px rgba(0,0,0,.64), 0 5px 13px rgba(0,0,0,.3);
+    }
+
+    .photo img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 2px;
+      filter: sepia(.14) contrast(.97) saturate(.88);
+      box-shadow: inset 0 0 16px rgba(0,0,0,.25);
+    }
+
+    .photo span {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 14px;
+      color: #6c4d2d;
+      text-align: center;
+      font-family: "Brush Script MT", "Segoe Script", cursive;
+      font-size: 1.45rem;
+      text-shadow: 0 1px 0 rgba(255,255,255,.3);
+    }
+
+    .p1 { left: 0; top: 27px; --r: -7deg; }
+    .p2 { right: 22px; top: 25px; --r: 6deg; }
+    .p3 { left: 32px; bottom: 8px; --r: -4deg; }
+    .p4 { right: 7px; bottom: 8px; --r: 4deg; }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: .92fr 1.45fr;
+      gap: 36px;
+      align-items: stretch;
+      margin-top: 34px;
+    }
+
+    .letter {
+      position: relative;
+      padding: 38px 32px;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 25% 20%, rgba(255,255,255,.38), transparent 18%),
+        radial-gradient(circle at 80% 82%, rgba(124,72,30,.12), transparent 30%),
+        repeating-linear-gradient(0deg, rgba(95,58,25,.035) 0 1px, transparent 1px 28px),
+        linear-gradient(135deg, rgba(255,255,255,.35), transparent 38%),
+        var(--paper-light);
+      border-radius: 8px;
+      box-shadow:
+        0 25px 52px rgba(0,0,0,.46),
+        inset 0 0 32px rgba(132,83,38,.16),
+        inset 0 0 0 1px rgba(119,76,36,.14);
+      clip-path: polygon(2% 0, 98% 1%, 100% 97%, 1% 100%);
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.45;
+    }
+
+    .letter::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(94,55,23,.18), transparent 7%, transparent 92%, rgba(94,55,23,.2)),
+        linear-gradient(0deg, rgba(94,55,23,.13), transparent 9%, transparent 90%, rgba(94,55,23,.12));
+      opacity: .55;
+    }
+
+    .letter::after {
+      content: "♡";
+      display: block;
+      margin-top: 18px;
+      text-align: center;
+      font-size: 3rem;
+      color: #4b2e16;
+      filter: drop-shadow(0 1px 0 rgba(255,255,255,.45));
+    }
+
+    .letter p,
+    .letter strong { position: relative; z-index: 1; }
+
+    .letter strong {
+      display: block;
+      margin-top: 18px;
+      font-size: 1.55rem;
+      text-align: center;
+    }
+
+    .video-zone { min-width: 0; }
+
+    .video-label {
+      margin: 0 0 13px;
+      text-align: center;
+      font-family: "Brush Script MT", "Segoe Script", cursive;
+      font-size: clamp(1.85rem, 4vw, 3.15rem);
+      color: #e5c581;
+      text-shadow: 0 5px 14px rgba(0,0,0,.45);
+    }
+
+    .video-frame {
+      position: relative;
+      overflow: hidden;
+      border: 7px solid rgba(255, 236, 203, .82);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255,255,255,.13), transparent 16%),
+        linear-gradient(135deg, #1c130d, #3b2718 56%, #160f0b);
+      box-shadow:
+        0 27px 68px rgba(0,0,0,.57),
+        inset 0 0 0 1px rgba(255,255,255,.08),
+        inset 0 0 70px rgba(0,0,0,.42);
+      aspect-ratio: 4 / 3;
+    }
+
+    .video-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, rgba(255,255,255,.1), transparent 22%, transparent 60%, rgba(255,255,255,.04)),
+        radial-gradient(circle at 50% 50%, transparent 0 42%, rgba(0,0,0,.35) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .video-frame video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 1;
+      position: relative;
+      z-index: 0;
+    }
+
+    .play {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: #efdfc2;
+      z-index: 2;
+    }
+
+    .play-circle {
+      width: 112px;
+      height: 112px;
+      display: grid;
+      place-items: center;
+      border: 4px solid currentColor;
+      border-radius: 50%;
+      background: rgba(255,255,255,.045);
+      box-shadow:
+        0 0 24px rgba(255, 230, 178, .18),
+        inset 0 0 18px rgba(255,255,255,.08);
+      font-size: 3.85rem;
+      line-height: 1;
+      padding-left: 8px;
+      text-shadow: 0 4px 10px rgba(0,0,0,.55);
+    }
+
+    .video-controls {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: Arial, sans-serif;
+      color: #f5e6cc;
+      opacity: .92;
+      z-index: 2;
+      text-shadow: 0 2px 6px rgba(0,0,0,.8);
+    }
+
+    .bar {
+      flex: 1;
+      height: 5px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.34);
+      box-shadow: inset 0 1px 2px rgba(0,0,0,.45);
+    }
+
+    .bar::before {
+      content: "";
+      display: block;
+      width: 18%;
+      height: 100%;
+      border-radius: inherit;
+      background: #f3d49a;
+      box-shadow: 0 0 10px rgba(243,212,154,.45);
+    }
+
+    .folders {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 46px;
+      margin: 64px auto 0;
+      width: min(920px, 100%);
+    }
+
+    .folder-link {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      transform: translateY(0);
+      transition: transform .25s ease, filter .25s ease;
+      perspective: 900px;
+    }
+
+    .folder-link:hover {
+      transform: translateY(-9px) rotate(-1deg);
+      filter: brightness(1.06);
+    }
+
+    .folder {
+      position: relative;
+      min-height: 220px;
+      padding: 68px 24px 30px;
+      color: #3b240f;
+      background:
+        linear-gradient(150deg, rgba(255,255,255,.25), transparent 26%),
+        radial-gradient(circle at 70% 90%, rgba(87,47,21,.17), transparent 26%),
+        repeating-linear-gradient(0deg, rgba(90,47,20,.035) 0 1px, transparent 1px 17px),
+        linear-gradient(165deg, #e4bf86, #c28a4d 55%, #ac713b);
+      border: 3px solid rgba(255, 239, 202, .43);
+      border-radius: 15px;
+      box-shadow:
+        0 26px 50px rgba(0,0,0,.51),
+        inset 0 0 0 1px rgba(255,255,255,.21),
+        inset 0 -18px 30px rgba(95,49,18,.16);
+      transform-style: preserve-3d;
+    }
+
+    .folder::before {
+      content: attr(data-tab);
+      position: absolute;
+      left: 24px;
+      top: -34px;
+      min-width: 142px;
+      padding: 13px 20px 10px;
+      text-align: center;
+      border-radius: 15px 15px 0 0;
+      background:
+        linear-gradient(140deg, rgba(255,255,255,.23), transparent 38%),
+        #d8ad72;
+      border: 3px solid rgba(255, 239, 202, .43);
+      border-bottom: 0;
+      font-family: Arial, sans-serif;
+      font-size: .9rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
+    }
+
+    .folder::after {
+      content: "";
+      position: absolute;
+      left: 9px;
+      right: 9px;
+      top: 30px;
+      height: 20px;
+      border-radius: 9px 9px 0 0;
+      background: rgba(255,238,202,.17);
+      box-shadow: 0 7px 13px rgba(91,47,20,.16);
+    }
+
+    .folder-title {
+      position: relative;
+      z-index: 1;
+      font-family: "Brush Script MT", "Segoe Script", cursive;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 1;
+      text-align: center;
+      margin: 0;
+      transform: rotate(-3deg);
+      text-shadow: 0 1px 0 rgba(255,255,255,.26);
+    }
+
+    .folder-icon {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      text-align: center;
+      font-size: 3.15rem;
+      line-height: 1;
+      text-shadow: 0 1px 0 rgba(255,255,255,.24);
+    }
+
+    .folder-note {
+      margin: 19px 0 0;
+      text-align: center;
+      color: #ead8bd;
+      font-family: Arial, sans-serif;
+      font-size: .9rem;
+      line-height: 1.5;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-shadow: 0 3px 10px rgba(0,0,0,.5);
+    }
+
+    .footer-note {
+      margin: 45px 0 0;
+      text-align: center;
+      font-family: "Brush Script MT", "Segoe Script", cursive;
+      font-size: clamp(1.9rem, 4vw, 3.45rem);
+      color: #e6bd68;
+      text-shadow: 0 4px 14px rgba(0,0,0,.5);
+    }
+
+    .decor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 2;
+      opacity: .93;
+    }
+
+    .decor.flowers {
+      left: -8px;
+      bottom: -12px;
+      width: 188px;
+      height: 250px;
+      background:
+        radial-gradient(circle at 49% 14%, #f5e0ba 0 4px, transparent 5px),
+        radial-gradient(circle at 42% 31%, #d9b873 0 3px, transparent 4px),
+        radial-gradient(circle at 63% 45%, #f1d9b0 0 4px, transparent 5px),
+        radial-gradient(circle at 53% 62%, #d7aa65 0 3px, transparent 4px),
+        linear-gradient(84deg, transparent 48%, rgba(170,128,70,.72) 49% 51%, transparent 52%),
+        linear-gradient(68deg, transparent 46%, rgba(137,97,54,.55) 47% 49%, transparent 50%);
+      filter: drop-shadow(0 12px 12px rgba(0,0,0,.45));
+    }
+
+    .decor.note {
+      right: 36px;
+      bottom: 28px;
+      width: 122px;
+      height: 90px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.18), transparent 40%),
+        #cfa973;
+      transform: rotate(-12deg);
+      border-radius: 4px;
+      box-shadow: 0 16px 28px rgba(0,0,0,.45), inset 0 0 18px rgba(101,64,31,.15);
+    }
+
+    .decor.note::before {
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: 32px;
+      width: 52px;
+      height: 22px;
+      transform: rotate(8deg);
+      background: rgba(221,190,144,.64);
+      box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    }
+
+    .decor.note::after {
+      content: "♡";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: #5d3b1e;
+      font-size: 3rem;
+    }
+
+    .pen {
+      position: fixed;
+      right: 72px;
+      bottom: 21px;
+      width: 150px;
+      height: 11px;
+      border-radius: 999px;
+      background:
+        linear-gradient(90deg, #1b1714 0 12%, #b08a54 12% 18%, #25201c 18% 72%, #c9a66a 72% 82%, #15110f 82%);
+      transform: rotate(-20deg);
+      box-shadow: 0 12px 18px rgba(0,0,0,.45);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+        min-height: auto;
+        padding-inline: 0;
+      }
+
+      .title-card { grid-column: 1 / -1; order: -1; }
+      .photo { position: relative; inset: auto; width: 100%; }
+      .content-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .page { width: min(100% - 22px, 1180px); padding-top: 64px; }
+      .hero, .folders { grid-template-columns: 1fr; }
+      .title-card { padding: 32px 18px 25px; }
+      .letter { padding: 30px 23px; }
+      .folders { gap: 56px; }
+      .decor.note, .decor.flowers, .pen { display: none; }
+      .video-controls { left: 16px; right: 16px; gap: 10px; font-size: .86rem; }
+      .play-circle { width: 88px; height: 88px; font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="lights" aria-hidden="true">
+    <span class="bulb"></span>
+    <span class="bulb"></span>
+    <span class="bulb"></span>
+    <span class="bulb"></span>
+    <span class="bulb"></span>
+    <span class="bulb"></span>
+  </div>
+
+  <main class="page">
+    <section class="hero" aria-label="Головне привітання">
+      <article class="photo p1">
+        <img src="media/img/photo1.JPG" alt="Спільне фото з дідусем 1" />
+        <span>Наші моменти</span>
+      </article>
+
+      <article class="photo p2">
+        <img src="media/img/photo2.JPG" alt="Спільне фото з дідусем 2" />
+        <span>Разом</span>
+      </article>
+
+      <div class="title-card">
+        <h1>Дідусь,</h1>
+        <h2>Василь Степанович,</h2>
+        <div class="script">Шеф,<br />любимо тебе.</div>
+        <div class="heart-line">♡</div>
+      </div>
+
+      <article class="photo p3">
+        <img src="media/img/photo4.JPG" alt="Спільне фото з дідусем 3" />
+        <span>Теплі спогади</span>
+      </article>
+
+      <article class="photo p4">
+        <img src="media/img/photo3.JPG" alt="Спільне фото з дідусем 4" />
+        <span>Любимо</span>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="letter">
+        <p>Дорогий наш Дідусю, Василь Степанович!</p>
+        <p>Твоя мудрість, доброта і сила — наш приклад і опора.</p>
+        <p>Ти найкращий Дідусь, надійний Шеф і просто неймовірна людина.</p>
+        <p>Дякуємо тобі за турботу, підтримку, жарти, досвід і за кожен момент поруч.</p>
+        <strong>Ми тебе дуже любимо!</strong>
+      </div>
+
+      <div class="video-zone">
+        <p class="video-label">Привітання для тебе →</p>
+        <div class="video-frame">
+          <!-- Щоб додати своє відео, заміни src на файл, наприклад: video/privitannya.mp4 -->
+          <video autoplay loop muted playsinline preload="auto">
+            <source src="media/video.mov" type="video/mp4" />
+              Ваш браузер не підтримує відео.
+            </video>
+        </div>
+      </div>
+    </section>
+
+    <section class="folders" aria-label="Папки з подарунками">
+      <a class="folder-link" href="your-video.mp4">
+        <div class="folder" data-tab="Відео">
+          <p class="folder-title">Ми тут</p>
+          <div class="folder-icon">▷</div>
+        </div>
+        <p class="folder-note">Відкрий та переглянь<br />наше вітальне відео</p>
+      </a>
+
+      <a class="folder-link" href="your-photo.jpg">
+        <div class="folder" data-tab="Фото">
+          <p class="folder-title">Тут для тебе</p>
+          <div class="folder-icon">▧</div>
+        </div>
+        <p class="folder-note">Відкрий та переглянь<br />особливу картинку</p>
+      </a>
+    </section>
+
+    <p class="footer-note">Дякуємо, що ти у нас є! ♡</p>
+  </main>
+
+  <div class="decor flowers" aria-hidden="true"></div>
+  <div class="decor note" aria-hidden="true"></div>
+  <div class="pen" aria-hidden="true"></div>
+</body>
+</html>
