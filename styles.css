@@ -95,7 +95,7 @@ button,a{touch-action:manipulation}
   gap:18px;
   margin:0 0 18px;
   color:var(--brown);
-  font-size:clamp(13px, 1.24vw, 21px);
+  font-size:clamp(40px, 1.24vw, 48px);
   font-weight:700;
   letter-spacing:.45em;
   text-transform:uppercase;
@@ -129,7 +129,7 @@ h1,h2,h3,p{margin-top:0}
 }
 .hero h1{
   margin:0;
-  font-size:clamp(72px, 8.25vw, 118px);
+  font-size:clamp(60px, 8.25vw, 104px);
   line-height:.82;
 }
 .hero h1 span{
@@ -1009,75 +1009,123 @@ h1,h2,h3,p{margin-top:0}
   .reveal{opacity:1!important;transform:none!important}
 }
 
-/* FIX: прибираємо білий овал/бейдж поверх PNG-папки "Для тебе" */
-.folder-card--image.is-waiting::before {
-  content: none !important;
-  display: none !important;
-}
 
-/* Залишаємо PNG чистою, без затемнення, але логіка блокування в JS працює */
-.folder-card--image.is-waiting .folder-card__image {
-  opacity: 1 !important;
-  filter: drop-shadow(0 22px 28px rgba(74, 48, 30, .12)) !important;
-}
-
-/* FIX: PNG-папки без рябіння тексту */
+/* =========================================================
+   FINAL CLEAN FOLDER FIX
+   PNG-папки показуються як є: без overlay-тексту, бейджів,
+   CSS-іконок, фільтрів, rotate/scale/hover-анімацій.
+   Під твої картинки 1536×1290: десктоп 512×430, мобайл 384×322.5.
+   ========================================================= */
 .folder-card--image,
 .folder-card--image:hover,
 .folder-card--image:focus-visible,
 .folder-card--gift.folder-card--image:hover,
-.folder-card--gift.folder-card--image:focus-visible {
-  transform: none !important;
-  filter: none !important;
-  will-change: auto !important;
-  box-shadow: none !important;
+.folder-card--gift.folder-card--image:focus-visible,
+.folder-card--image.is-waiting,
+.folder-card--image.reveal,
+.folder-card--image.reveal.is-visible,
+.js-ready .folder-card--image.reveal,
+.js-ready .folder-card--image.reveal.is-visible{
+  position:relative !important;
+  display:block !important;
+  width:512px !important;
+  max-width:100% !important;
+  min-height:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  filter:none !important;
+  transform:none !important;
+  transition:none !important;
+  animation:none !important;
+  opacity:1 !important;
+  overflow:visible !important;
+  justify-self:center !important;
+  isolation:auto !important;
+  will-change:auto !important;
 }
 
-/* Не масштабуємо PNG більше їхнього реального розміру */
-.folder-card--primary.folder-card--image .folder-card__image {
-  width: min(100%, 512px) !important;
-  max-width: 512px !important;
+.folder-card--image::before,
+.folder-card--image::after,
+.folder-card--image.is-waiting::before,
+.folder-card--image.is-waiting::after{
+  content:none !important;
+  display:none !important;
 }
 
-.folder-card--gift.folder-card--image .folder-card__image {
-  width: min(100%, 480px) !important;
-  max-width: 480px !important;
-}
-
-/* Прибираємо transform/filter саме з PNG, бо вони розмивають текст */
 .folder-card--image .folder-card__image,
 .folder-card--image:hover .folder-card__image,
 .folder-card--image:focus-visible .folder-card__image,
 .folder-card--gift.folder-card--image:hover .folder-card__image,
 .folder-card--gift.folder-card--image:focus-visible .folder-card__image,
-.folder-card--image.is-waiting .folder-card__image {
-  height: auto !important;
-  transform: none !important;
-  filter: none !important;
-  transition: opacity .22s ease !important;
-  image-rendering: auto !important;
-  backface-visibility: visible !important;
-  will-change: auto !important;
+.folder-card--image.is-waiting .folder-card__image{
+  display:block !important;
+  width:512px !important;
+  height:auto !important;
+  max-width:100% !important;
+  margin:0 auto !important;
+  padding:0 !important;
+  opacity:1 !important;
+  transform:none !important;
+  filter:none !important;
+  transition:none !important;
+  object-fit:contain !important;
+  image-rendering:auto !important;
+  backface-visibility:visible !important;
+  will-change:auto !important;
+  pointer-events:none !important;
+  user-select:none !important;
 }
 
-/* Тінь залишаємо окремо під PNG, а не фільтром на самій картинці */
-.folder-card--image::after {
-  content: "" !important;
-  position: absolute;
-  left: 10% !important;
-  right: 10% !important;
-  bottom: 12px !important;
-  height: 34px !important;
-  border-radius: 50% !important;
-  background: rgba(92, 64, 42, .16) !important;
-  filter: blur(16px) !important;
-  opacity: .62 !important;
-  transform: none !important;
-  z-index: -1 !important;
+.folder-card--image:focus-visible{
+  outline:3px solid rgba(116,84,59,.24) !important;
+  outline-offset:8px !important;
 }
 
-/* Щоб попередній бейдж не повернувся поверх другої PNG */
-.folder-card--image.is-waiting::before {
-  content: none !important;
-  display: none !important;
+@media (max-width:700px){
+  .folder-grid{
+    grid-template-columns:1fr !important;
+    gap:28px !important;
+    justify-items:center !important;
+  }
+
+  .folder-card--image,
+  .folder-card--image:hover,
+  .folder-card--image:focus-visible,
+  .folder-card--image.is-waiting,
+  .folder-card--image.reveal,
+  .folder-card--image.reveal.is-visible,
+  .js-ready .folder-card--image.reveal,
+  .js-ready .folder-card--image.reveal.is-visible{
+    width:min(100%, 384px) !important;
+  }
+
+  .folder-card--image .folder-card__image,
+  .folder-card--image:hover .folder-card__image,
+  .folder-card--image:focus-visible .folder-card__image,
+  .folder-card--image.is-waiting .folder-card__image{
+    width:min(100%, 384px) !important;
+    height:auto !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .folder-card--primary.folder-card--image,
+  .folder-card--gift.folder-card--image {
+    width: 360px !important;
+    max-width: 100% !important;
+  }
+
+  .folder-grid {
+    gap: 72px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .folder-card--primary.folder-card--image,
+  .folder-card--gift.folder-card--image {
+    width: 340px !important;
+  }
 }
