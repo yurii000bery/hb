@@ -1129,3 +1129,317 @@ h1,h2,h3,p{margin-top:0}
     width: 340px !important;
   }
 }
+
+/* Gift image preview + fullscreen lightbox */
+.gift-image-card {
+  position: relative;
+  display: block;
+  width: min(100%, 760px);
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid rgba(116, 84, 59, .18);
+  border-radius: 28px;
+  background: rgba(255, 248, 239, .62);
+  box-shadow: 0 24px 70px rgba(63, 43, 27, .14);
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gift-image-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  background: rgba(255, 248, 239, .5);
+}
+
+.gift-image-card__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(255, 248, 239, .88);
+  color: var(--brown);
+  box-shadow: 0 10px 24px rgba(63, 43, 27, .12);
+  font-size: 13px;
+  font-weight: 800;
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(20, 16, 13, .86);
+}
+
+.image-lightbox.is-open {
+  display: flex;
+}
+
+.image-lightbox img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 96vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, .38);
+}
+
+.image-lightbox__close {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 248, 239, .92);
+  color: #2b1811;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+body.lightbox-lock {
+  overflow: hidden;
+}
+
+@media (max-width: 700px) {
+  .gift-image-card {
+    border-radius: 22px;
+  }
+
+  .gift-image-card img {
+    max-height: 62vh;
+  }
+
+  .gift-image-card__hint {
+    bottom: 10px;
+    min-height: 34px;
+    font-size: 12px;
+  }
+
+  .image-lightbox {
+    padding: 10px;
+  }
+
+  .image-lightbox img {
+    max-width: 96vw;
+    max-height: 88vh;
+    border-radius: 14px;
+  }
+}
+
+/* =========================================================
+   FINAL VIDEO LAYOUT
+   Верхнє autoplay .mov — квадратне, muted, loop.
+   Два нижні відео — 16:9, запускаються тапом зі звуком.
+   ========================================================= */
+
+.video-stack {
+  display: grid;
+  gap: 22px;
+  width: min(100%, 820px);
+  margin: 0 auto;
+}
+
+.video-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  border: 1px solid rgba(116, 84, 59, .18);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(255, 255, 255, .62), transparent 44%),
+    linear-gradient(145deg, rgba(255, 248, 239, .82), rgba(238, 218, 197, .62));
+  box-shadow: 0 24px 70px rgba(63, 43, 27, .14);
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Верхнє autoplay .mov */
+.video-frame--auto {
+  width: min(100%, 520px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  cursor: default;
+}
+
+.video-frame__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: rgba(255, 248, 239, .68);
+}
+
+/* Верхнє відео заповнює квадратну рамку */
+.video-frame--auto .video-frame__media {
+  object-fit: cover;
+}
+
+/* Overlay тільки для двох нижніх відео */
+.video-frame__overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  padding: 20px;
+  color: #2b1811;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 248, 239, .32), transparent 38%),
+    linear-gradient(180deg, rgba(20, 16, 13, .08), rgba(20, 16, 13, .18));
+  transition: opacity .24s ease;
+  pointer-events: none;
+}
+
+.video-frame__play {
+  display: grid;
+  place-items: center;
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  background: rgba(255, 248, 239, .92);
+  box-shadow: 0 16px 38px rgba(63, 43, 27, .18);
+}
+
+.video-frame__play svg {
+  width: 38px;
+  height: 38px;
+  margin-left: 4px;
+  fill: currentColor;
+}
+
+.video-frame__label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(255, 248, 239, .88);
+  color: var(--brown);
+  box-shadow: 0 10px 24px rgba(63, 43, 27, .10);
+  font-size: 13px;
+  font-weight: 800;
+  backdrop-filter: blur(10px);
+}
+
+.video-frame.is-playing .video-frame__overlay {
+  opacity: 0;
+}
+
+.video-frame:focus-visible {
+  outline: 3px solid rgba(116, 84, 59, .24);
+  outline-offset: 8px;
+}
+
+@media (max-width: 700px) {
+  .video-stack {
+    gap: 18px;
+    width: 100%;
+  }
+
+  .video-frame {
+    border-radius: 22px;
+  }
+
+  .video-frame--auto {
+    width: min(100%, 360px);
+    aspect-ratio: 1 / 1;
+  }
+
+  .video-frame__play {
+    width: 62px;
+    height: 62px;
+  }
+
+  .video-frame__play svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .video-frame__label {
+    min-height: 32px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 390px) {
+  .video-frame--auto {
+    width: min(100%, 330px);
+  }
+}
+
+.video-frame--auto.needs-tap::after {
+  content: "Тицьни, щоб запустити";
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(255, 248, 239, .9);
+  color: var(--brown);
+  box-shadow: 0 10px 24px rgba(63, 43, 27, .12);
+  font-size: 12px;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+.video-frame--auto.is-playing::after {
+  content: none;
+  display: none;
+}
+
+.video-frame--auto.needs-tap {
+  cursor: pointer;
+}
+
+.video-frame--auto.needs-tap::after {
+  content: "Тицьни, щоб запустити";
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  z-index: 3;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(255, 248, 239, .92);
+  color: var(--brown);
+  box-shadow: 0 10px 24px rgba(63, 43, 27, .12);
+  font-size: 12px;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+.video-frame--auto.is-playing::after {
+  content: none;
+  display: none;
+}

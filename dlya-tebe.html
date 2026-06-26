@@ -23,25 +23,20 @@
       <h1 id="gift-title">Для тебе</h1>
       <p class="lead">А тут — головний подарунок. Нехай він принесе радість, нові спогади і ще більше часу разом із нами.</p>
 
-      <div class="gift-certificate" aria-label="Сертифікат подарунку">
-        <div class="certificate-mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64"><path d="M12 27h40v29H12V27Z"/><path d="M8 17h48v10H8V17Z"/><path d="M32 17v39"/><path d="M32 17c-6.3 0-11-3-11-6.7C21 8.3 22.7 7 24.7 7 29.3 7 32 17 32 17Z"/><path d="M32 17c6.3 0 11-3 11-6.7C43 8.3 41.3 7 39.3 7 34.7 7 32 17 32 17Z"/></svg>
-        </div>
-        <p>Сімейний сертифікат</p>
-        <h2>На час разом</h2>
-        <span>Тут можна вписати фінальну назву подарунку, дату, місце або посилання.</span>
-      </div>
+      <button class="gift-image-card" type="button" aria-label="Відкрити подарунок на весь екран">
+  <img
+    src="img/football_voucher_porto.png"
+    alt="Подарунок для Дідуся"
+    loading="eager"
+    decoding="async"
+  />
+  <span class="gift-image-card__hint">Тицьни тут, щоб відкрити</span>
+</button>
 
-      <div class="gift-details" aria-label="Деталі подарунку">
-        <article><span>01</span><h3>Що саме</h3><p>Коротко опиши головний подарунок або встав посилання на нього.</p></article>
-        <article><span>02</span><h3>Коли</h3><p>Додай дату, час або домовленість, коли ви будете разом.</p></article>
-        <article><span>03</span><h3>Як відкрити</h3><p>Залиши просту інструкцію: натиснути кнопку, подивитися файл або чекати дзвінка.</p></article>
-      </div>
-
-      <div class="page-actions">
-        <a class="button button--ghost" href="mi-tut.html">← До “Ми тут”</a>
-        <a class="button button--primary" href="index.html">Повернутися на головну</a>
-      </div>
+<div class="image-lightbox" aria-hidden="true" role="dialog" aria-label="Подарунок на весь екран">
+  <button class="image-lightbox__close" type="button" aria-label="Закрити">×</button>
+  <img src="img/football_voucher_porto.png" alt="Подарунок для Дідуся" />
+</div>
     </section>
   </main>
 
